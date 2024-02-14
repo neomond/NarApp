@@ -107,8 +107,8 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoryCircleCell.reuseIdentifier, for: indexPath) as? StoryCircleCell else {
                 return UICollectionViewCell()
             }
-            
-            cell.backgroundColor = .red
+            print(stories.count)
+            cell.configure(storyModel: stories[indexPath.row])
             return cell
             
         }

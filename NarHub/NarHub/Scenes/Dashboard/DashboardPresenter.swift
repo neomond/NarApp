@@ -38,8 +38,9 @@ class DashboardPresenter: DashboardPresentationLogic {
     for storyResponse in storiesList {
         let model = StoryModel(id: storyResponse.id ?? 0, title: storyResponse.title ?? "", url: storyResponse.url ?? "")
         storyModels.append(model)
+        
   }
-  
+  print(storyModels)
     let viewModel = Dashboard.FetchStories.ViewModel(stories: storyModels)
     viewController?.displayStories(viewModel: viewModel)
   }

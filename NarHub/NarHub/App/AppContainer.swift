@@ -7,9 +7,6 @@
 
 import Foundation
 import NarHubNetworkKit
-//import AzercellUIkit
-//import AzercellNetworkKit
-
 let App = AppContainer()
 
 final class AppContainer {

@@ -20,7 +20,6 @@
 		7AF914722B7B6BA100C8E149 /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF914062B7B6BA000C8E149 /* AppContainer.swift */; };
 		7AF914732B7B6BA100C8E149 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF914072B7B6BA000C8E149 /* AppDelegate.swift */; };
 		7AF914752B7B6BA100C8E149 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AF9140A2B7B6BA000C8E149 /* LaunchScreen.storyboard */; };
-		7AF914762B7B6BA100C8E149 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF9140C2B7B6BA000C8E149 /* SceneDelegate.swift */; };
 		7AF914772B7B6BA100C8E149 /* PhoneNumberValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF9140E2B7B6BA000C8E149 /* PhoneNumberValidator.swift */; };
 		7AF914782B7B6BA100C8E149 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF9140F2B7B6BA000C8E149 /* UIImage+Extensions.swift */; };
 		7AF914792B7B6BA100C8E149 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF914102B7B6BA000C8E149 /* Extension.swift */; };
@@ -131,7 +130,6 @@
 		7AF914072B7B6BA000C8E149 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7AF914082B7B6BA000C8E149 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7AF9140B2B7B6BA000C8E149 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		7AF9140C2B7B6BA000C8E149 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7AF9140E2B7B6BA000C8E149 /* PhoneNumberValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneNumberValidator.swift; sourceTree = "<group>"; };
 		7AF9140F2B7B6BA000C8E149 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		7AF914102B7B6BA000C8E149 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
@@ -250,7 +248,6 @@
 				7AF913F92B7B6BA000C8E149 /* Helpers */,
 				7AF914082B7B6BA000C8E149 /* Info.plist */,
 				7AF914662B7B6BA100C8E149 /* Resources */,
-				7AF9140C2B7B6BA000C8E149 /* SceneDelegate.swift */,
 				7AF914152B7B6BA000C8E149 /* Scenes */,
 				7AF914092B7B6BA000C8E149 /* Supporting */,
 				7AF914122B7B6BA000C8E149 /* Views */,
@@ -660,7 +657,6 @@
 				7AF914932B7B6BA100C8E149 /* TabBarWorker.swift in Sources */,
 				7AF914A62B7B6BA100C8E149 /* StoryCircleCollectionViewCell.swift in Sources */,
 				7AF9146C2B7B6BA100C8E149 /* TabBarSetupHelper.swift in Sources */,
-				7AF914762B7B6BA100C8E149 /* SceneDelegate.swift in Sources */,
 				7AF9147D2B7B6BA100C8E149 /* BalanceTransferView.swift in Sources */,
 				7AF914892B7B6BA100C8E149 /* DummyWorker.swift in Sources */,
 				7AF914792B7B6BA100C8E149 /* Extension.swift in Sources */,

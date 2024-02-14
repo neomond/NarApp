@@ -27,27 +27,27 @@ protocol DashboardDataStore { }
 class DashboardInteractor: DashboardBusinessLogic, DashboardDataStore {
    
     var presenter: DashboardPresentationLogic?
-    var worker: DashboardWorker?
+    lazy var worker: DashboardWorkerLogic = DashboardWorker()
 
     var stories: StoriesResponse?
     var hubsList: HubResponse?
     
+
     
     func fetchStories(request: Dashboard.FetchStories.Request) {
-        self.worker?.fetchStories( { [ weak self ] data in
+        worker.fetchStories({ [weak self] data in
             guard let self = self else { return }
             
-            if let data = self.stories {
+            if let data = data {
                 self.stories = data
-                let response = Dashboard.FetchStories.Response(stories: data)
+                let response = Dashboard.FetchStories.Response( stories: data)
                 self.presenter?.presentStories(response: response)
             }
         })
     }
-    
     // MARK: Business Logic
     func fetchHubs(request: Dashboard.FetchHubs.Request) {
-        self.worker?.fetchHubs( { [ weak self ] response in
+        self.worker.fetchHubs( { [ weak self ] response in
             guard let self = self else { return }
             
         

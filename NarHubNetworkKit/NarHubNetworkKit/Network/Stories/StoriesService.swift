@@ -23,7 +23,7 @@ public class StoryService: BaseService, StoryServiceProtocol {
         #if DEBUG
         self.provider = MoyaProvider<StoriesAPI>()
         #else
-        self.provider = MoyaProvider<LoyaltyAPI>(plugins: [self.authPlugin, self.languagePlugin])
+        self.provider = MoyaProvider<StoriesAPI>(plugins: [self.authPlugin, self.languagePlugin])
         #endif
     }
     

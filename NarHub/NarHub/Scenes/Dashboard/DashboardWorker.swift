@@ -14,7 +14,7 @@ import UIKit
 import NarHubNetworkKit
 
 protocol DashboardWorkerLogic {
-    func fetchStories(_ completion: @escaping (StoriesResponse) -> Void)
+    func fetchStories(_ completion: @escaping (StoriesResponse?) -> Void)
     
     func fetchHubs(_ completion: @escaping (HubResponse) -> Void)
 }
@@ -25,11 +25,10 @@ class DashboardWorker: DashboardWorkerLogic {
         
    // MARK: - Working Logic
     
-   func fetchStories(_ completion: @escaping (StoriesResponse) -> Void) {
+   func fetchStories(_ completion: @escaping (StoriesResponse?) -> Void) {
        service.story.fetchStories { result in
             switch result {
             case .success(let data):
-                print(data)
                 completion(data)
             default:
                 print("no data")
