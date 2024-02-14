@@ -35,10 +35,10 @@ final class BalanceTransferInteractor: BalanceTransferBusinessLogic, BalanceTran
     func fetchBalanceTransfer(request: BalanceTransfer.FetchOptions.Request) {
         self.worker.fetchBalanceTransfer(completion: { [weak self] response in
             guard let self = self else { return }
-        
-                self.transferAmounts = response
-                let response = BalanceTransfer.FetchOptions.Response(balanceTransfer: response )
-                self.presenter?.presentTransferAmounts(response: response)
+            
+            self.transferAmounts = response
+            let response = BalanceTransfer.FetchOptions.Response(balanceTransfer: response )
+            self.presenter?.presentTransferAmounts(response: response)
             
         })
     }

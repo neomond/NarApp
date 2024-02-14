@@ -71,7 +71,7 @@ class ProductCardContainerView: UIView {
 //            self.productCardCells.append(ProductCardCell(productType: productType))
 //        }
 //    }
-//    
+
     
     private func setupProductCards() {
         ProductType.allCases.forEach { productType in

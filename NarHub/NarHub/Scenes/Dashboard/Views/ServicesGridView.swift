@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 enum ServiceType: String, CaseIterable {
-
+    
     case credit = "Kredit"
     case freeSMS = "Free SMS"
     case balanceTransfer = "Balance transfer"
@@ -26,7 +26,7 @@ enum ServiceType: String, CaseIterable {
             AppAssets.credit.load()
         case .freeSMS:
             AppAssets.sms.load()
-
+            
         case .balanceTransfer:
             AppAssets.balance_transfer.load()
         case .cevirOffer:
@@ -53,10 +53,10 @@ class ServicesGridView: UIView, UIGestureRecognizerDelegate {
     }()
     
     lazy var servicesCollectionView: ServicesCollectionView = {
-            let collectionView = ServicesCollectionView()
-            collectionView.register(GridItemView.self, forCellWithReuseIdentifier: GridItemView.reuseIdentifier)
-            return collectionView
-        }()
+        let collectionView = ServicesCollectionView()
+        collectionView.register(GridItemView.self, forCellWithReuseIdentifier: GridItemView.reuseIdentifier)
+        return collectionView
+    }()
     
     private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView()
@@ -85,7 +85,7 @@ class ServicesGridView: UIView, UIGestureRecognizerDelegate {
     private func setupViews() {
         self.addSubview(self.titleLabel)
         self.addSubview(self.servicesCollectionView)
-//        addSubview(contentStackView)
+        addSubview(contentStackView)
     }
     
     private func setupConstraints() {
@@ -93,31 +93,22 @@ class ServicesGridView: UIView, UIGestureRecognizerDelegate {
             make.top.leading.trailing.equalToSuperview().inset(16)
         }
         self.servicesCollectionView.snp.updateConstraints({ make in
-                   make.top.equalTo(titleLabel.snp.bottom).offset(16)
-                   make.height.equalTo(calculateServiceCollectionViewHeight() + 16)
-                   make.horizontalEdges.equalToSuperview().inset(16)
-                   make.bottom.equalToSuperview().offset(-16)
-               })
-//        contentStackView.snp.makeConstraints { make in
-//            make.top.equalTo(titleLabel.snp.bottom).offset(16)
-//            make.left.right.bottom.equalToSuperview().inset(12)
-//            
-//        }
+            make.top.equalTo(titleLabel.snp.bottom).offset(16)
+            make.horizontalEdges.equalToSuperview().inset(16)
+            make.bottom.equalToSuperview().offset(-16)
+        })
+        contentStackView.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(16)
+            make.left.right.bottom.equalToSuperview().inset(12)
+            
+        }
         
     }
     
-    private func calculateServiceCollectionViewHeight() -> Int {
-            let itemHeight = 66
-            let sectionInset = 8
-    //        let totalHeight = columnCount * itemHeight + insetCount * sectionInset
-            
-            let totalHeight = UIScreen.main.bounds.height * 0.8 - 310 - 23
-            return Int(totalHeight)
-        }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-          return true
-      }
+        return true
+    }
     
     func addRow(with views: [UIView]) {
         let rowStackView = UIStackView()
@@ -166,6 +157,20 @@ class ServicesGridView: UIView, UIGestureRecognizerDelegate {
         }
     }
     
+    private func calculateServiceCollectionViewHeight() {
+        let columnCount = 2
+        let rowCount = ceil(CGFloat(ServiceType.allCases.count) / CGFloat(columnCount))
+        let itemHeight: CGFloat = 66
+        let spacing: CGFloat = 10
+        let totalSpacing = spacing * (rowCount - 1)
+        let totalHeight = rowCount * itemHeight + totalSpacing
+        
+        servicesCollectionView.snp.updateConstraints { make in
+            make.height.equalTo(totalHeight)
+        }
+    }
+
+    
     @objc private func gridItemTapped(_  sender: UITapGestureRecognizer) {
         guard let gridItemView = sender.view as? GridItemView else {
             return
@@ -175,16 +180,16 @@ class ServicesGridView: UIView, UIGestureRecognizerDelegate {
         if delegate == nil {
             print("Delegate is nil")
         }
-
+        
         if let serviceType = gridItemView.serviceType {
             delegate?.didSelectService(serviceType)
         }
     }
-
-//    func configure(with hub: HubModel) {
-//        titleLabel.text = hub.title
-//       iconImageView.image = hub.image
-//    }
+    
+    //    func configure(with hub: HubModel) {
+    //        titleLabel.text = hub.title
+    //       iconImageView.image = hub.image
+    //    }
     
 }
 

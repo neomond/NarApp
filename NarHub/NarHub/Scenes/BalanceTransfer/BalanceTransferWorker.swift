@@ -28,14 +28,14 @@ class BalanceTransferWorker: BalanceTransferWorkingLogic {
     
     func fetchBalanceTransfer(completion: @escaping (BalanceTransferResponse) -> Void) {
         
-//        service.balanceTransfer.fetchBalanceTransfer { result in
-//            switch result {
-//            case .success(let response):
-//                completion(response)
-//            default:
-//                print("no data")
-//            }
-//        }
+        service.balanceTransfer.fetchBalanceTransfer { result in
+            switch result {
+            case .success(let response):
+                completion(response)
+            default:
+                print("no data")
+            }
+        }
     }
     
 }

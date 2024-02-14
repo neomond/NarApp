@@ -445,16 +445,16 @@
 		7AF914432B7B6BA100C8E149 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
-				7AF914442B7B6BA100C8E149 /* DashboardView.swift */,
+				7AF914512B7B6BA100C8E149 /* Views */,
 				7AF914452B7B6BA100C8E149 /* Cells */,
 				7AF9144A2B7B6BA100C8E149 /* DashboardInteractor.swift */,
 				7AF9144B2B7B6BA100C8E149 /* DashboardViewController.swift */,
+				7AF914442B7B6BA100C8E149 /* DashboardView.swift */,
 				7AF9144C2B7B6BA100C8E149 /* DashboardPresenter.swift */,
 				7AF9144D2B7B6BA100C8E149 /* DashboardModels.swift */,
 				7AF9144E2B7B6BA100C8E149 /* DashboardWorker.swift */,
 				7AF9144F2B7B6BA100C8E149 /* DashboardRouter.swift */,
 				7AF914502B7B6BA100C8E149 /* DashboardConfigurator.swift */,
-				7AF914512B7B6BA100C8E149 /* Views */,
 				7AF914562B7B6BA100C8E149 /* Story */,
 			);
 			path = Dashboard;

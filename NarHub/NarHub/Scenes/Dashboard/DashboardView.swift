@@ -49,19 +49,16 @@ class DashboardView: UIView {
         return view
     }()
     
-
     private func setupSubviews() {
         self.containerView.addSubview(stackView)
         self.stackView.addArrangedSubview(storiesCollectionView)
-//        self.stackView.addArrangedSubview(productCardContainerView)
-//        self.stackView.addArrangedSubview(servicesGridView)
+        self.stackView.addArrangedSubview(productCardContainerView)
+        self.stackView.addArrangedSubview(servicesGridView)
 
         self.scrollView.addSubview(containerView)
         self.externalView.addSubview(scrollView)
         self.addSubview(externalView)
-    
     }
-    
   
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -91,11 +88,11 @@ class DashboardView: UIView {
             make.edges.equalToSuperview()
         }
         storiesCollectionView.snp.makeConstraints { make in
-            make.height.equalTo(80)
+            make.height.equalTo(120)
         }
-//        productCardContainerView.snp.makeConstraints { make in
-//            make.height.equalTo(100 + 24)
-//        }
+        productCardContainerView.snp.makeConstraints { make in
+            make.height.equalTo(100 + 24)
+        }
     }
 }
 

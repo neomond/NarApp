@@ -18,6 +18,12 @@ class StoryView: UIView {
         return progressBar
     }()
     
+    private let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
+    
     // MARK: - Properties
     var timer: Timer?
     var currentIndex: Int = 0
@@ -45,6 +51,9 @@ class StoryView: UIView {
     private func setupView() {
         self.addSubview(self.imageView)
         self.addSubview(self.progressBar)
+        self.addSubview(activityIndicator)
+        self.activityIndicator.center = CGPoint(x: bounds.midX, y: bounds.midY)
+        self.activityIndicator.startAnimating()
     }
     
     private func setupGestureRecognizers() {
@@ -85,7 +94,6 @@ class StoryView: UIView {
         print(index)
         self.startStory()
     }
-    
     
     
     func startStory() {
@@ -164,10 +172,22 @@ class StoryView: UIView {
     }
     
     // MARK: - Configuration
-    func configure(with image: UIImage, completion: @escaping () -> Void) {
-        imageView.image = image
+    func configure(with storyUrl: String, completion: @escaping () -> Void) {
+        guard let url = URL(string: storyUrl) else {
+            print("Invalid URL")
+            return
+        }
+        imageView.sd_setImage(with: url) { [weak self] (image, error, _, _) in
+            self?.activityIndicator.stopAnimating()
+            if let error = error {
+                print("Error loading image: \(error.localizedDescription)")
+            } else {
+                print("Image loaded successfully")
+            }
+        }
         self.onStoryClosed = completion
     }
+
 }
 
 

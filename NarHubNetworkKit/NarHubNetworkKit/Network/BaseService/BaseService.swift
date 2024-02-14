@@ -100,11 +100,7 @@ public class BaseService: BaseServiceProtocol {
     }
     
     
-    // MARK: - Private
-    
-    
     // MARK: - Public
-    
     public func cancelAll() {
         requests.forEach { cancellable in cancellable.cancel() }
         requests.removeAll()

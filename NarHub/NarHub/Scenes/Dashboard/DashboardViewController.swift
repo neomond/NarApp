@@ -41,7 +41,7 @@ class DashboardViewController: UIViewController {
         super.viewDidLoad()
         mainView.storiesCollectionView.delegate = self
         mainView.storiesCollectionView.dataSource = self
-//        mainView.servicesGridView.delegate = self
+        mainView.servicesGridView.delegate = self
     
         self.load()
     }
@@ -127,33 +127,33 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
         if collectionView == self.mainView.storiesCollectionView {
             return self.stories.count
         }
-//        else if collectionView == self.mainView.servicesGridView {
-//            return self.hubs.count
-//        }
+        //        else if collectionView == self.mainView.servicesGridView {
+        //            return self.hubs.count
+        //        }
         else {
             return 0
         }
     }
+    
+    // ::here ->  add story as the current window
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if collectionView == mainView.storiesCollectionView {
+            let storyView = StoryView(frame: UIScreen.main.bounds, stories: stories)
+            storyView.configure(with: stories[indexPath.row].url, completion: {
+                // ::here -> mark the story as watched when StoryView is closed
+                self.stories[indexPath.row].isSeen = true
+                collectionView.reloadItems(at: [indexPath])
+                // ::here -> reload the cell to update its appearance
+            })
+            storyView.startStory()
+            
+            if let currentWindow = view.window {
+                currentWindow.addSubview(storyView)
+            }
+        }
+    }
 }
-        // ::here ->  add story as the current window
-//        func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//            collectionView.deselectItem(at: indexPath, animated: true)
-//            if collectionView == mainView.storiesCollectionView {
-//                let storyView = StoryView(frame: UIScreen.main.bounds, stories: stories)
-//                storyView.configure(with: stories[indexPath.row].url, completion: {
-//        // ::here -> mark the story as watched when StoryView is closed
-//                    self.stories[indexPath.row].isSeen = true
-//                    collectionView.reloadItems(at: [indexPath])
-//        // ::here -> reload the cell to update its appearance
-//                })
-//                storyView.startStory()
-//    
-//                if let currentWindow = view.window {
-//                    currentWindow.addSubview(storyView)
-//                }
-//            }
-//        }
-  
 //            func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 //                guard collectionView == mainView.storiesCollectionView,
 //                      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoryCircleCell.reuseIdentifier, for: indexPath) as? StoryCircleCell else {
