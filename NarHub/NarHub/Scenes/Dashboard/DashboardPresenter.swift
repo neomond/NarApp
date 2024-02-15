@@ -12,57 +12,60 @@
 
 import UIKit
 
-protocol DashboardPresentationLogic
-{
-  func presentStories(response: Dashboard.FetchStories.Response)
+protocol DashboardPresentationLogic {
+    func presentStories(response: Dashboard.FetchStories.Response)
     
-  func presentHubs(response: Dashboard.FetchHubs.Response)
+    func presentHubs(response: Dashboard.FetchHubs.Response)
     
-  func presentLoad(response: Dashboard.Load.Response)
-
-  func presentError(error: Error)
+    func presentLoad(response: Dashboard.Load.Response)
+    
+    func presentError(error: Error)
 }
 
 class DashboardPresenter: DashboardPresentationLogic {
     
-  weak var viewController: DashboardDisplayLogic?
-  
-    var storyModels: [StoryModel] = []
+    weak var viewController: DashboardDisplayLogic?
+    
     
     func presentStories(response: Dashboard.FetchStories.Response){
-      
-    guard let storiesList = response.stories.list else {
-        return
+        var storyModels: [StoryModel] = []
+        
+        guard let storiesList = response.stories.list else {
+            return
+        }
+        
+        for storyResponse in storiesList {
+            let model = StoryModel(id: storyResponse.id ?? 0, title: storyResponse.title ?? "", url: storyResponse.url ?? "")
+            storyModels.append(model)
+            
+        }
+        print(storyModels)
+        let viewModel = Dashboard.FetchStories.ViewModel(stories: storyModels)
+        viewController?.displayStories(viewModel: viewModel)
     }
-        
-    for storyResponse in storiesList {
-        let model = StoryModel(id: storyResponse.id ?? 0, title: storyResponse.title ?? "", url: storyResponse.url ?? "")
-        storyModels.append(model)
-        
-  }
-  print(storyModels)
-    let viewModel = Dashboard.FetchStories.ViewModel(stories: storyModels)
-    viewController?.displayStories(viewModel: viewModel)
-  }
     
     func presentHubs(response: Dashboard.FetchHubs.Response) {
-        let data = response.hubs.list ?? []
-        let models = data.map { item -> HubModel in
-                return HubModel(
-                    id: item.id ?? 0,
-                    title: item.title ?? ""
-                )
-            }
-        let viewModel = Dashboard.FetchHubs.HubsModel(hubs: models)
+        var hubs: [HubModel] = []
+        
+        guard let hubList = response.hubs.list else {
+            return
+        }
+        
+        for hub in hubList {
+            let model = HubModel(id: hub.id ?? 0, title: hub.title ?? "")
+            hubs.append(model)
+            
+        }
+        print("Hub count is \(hubs.count)")
+        let viewModel = Dashboard.FetchHubs.ViewModel(hubs: hubs)
         viewController?.displayHubs(viewModel: viewModel)
-
     }
     
     func presentLoad(response: Dashboard.Load.Response) {
         let viewModel = Dashboard.Load.ViewModel()
         viewController?.displayLoad(viewModel: viewModel)
-        }
-
+    }
+    
     func presentError(error: Error) {
         viewController?.displayError(errorMessage: error.localizedDescription)
     }

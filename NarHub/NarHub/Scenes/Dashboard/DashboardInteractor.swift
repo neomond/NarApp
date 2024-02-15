@@ -35,7 +35,7 @@ class DashboardInteractor: DashboardBusinessLogic, DashboardDataStore {
 
     
     func fetchStories(request: Dashboard.FetchStories.Request) {
-        worker.fetchStories({ [weak self] data in
+        self.worker.fetchStories({ [weak self] data in
             guard let self = self else { return }
             
             if let data = data {
@@ -47,13 +47,12 @@ class DashboardInteractor: DashboardBusinessLogic, DashboardDataStore {
     }
     // MARK: Business Logic
     func fetchHubs(request: Dashboard.FetchHubs.Request) {
-        self.worker.fetchHubs( { [ weak self ] response in
+        self.worker.fetchHubs( { [ weak self ] data in
             guard let self = self else { return }
             
-        
-            if let hubsList = self.hubsList {
-                self.hubsList = response
-                let response = Dashboard.FetchHubs.Response(hubs: hubsList)
+            if let data = data {
+                self.hubsList = data
+                let response = Dashboard.FetchHubs.Response( hubs: data)
                 self.presenter?.presentHubs(response: response)
             }
         })

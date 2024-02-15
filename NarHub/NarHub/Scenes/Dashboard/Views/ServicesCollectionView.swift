@@ -18,7 +18,7 @@ class ServicesCollectionView: UICollectionView {
         layout.minimumLineSpacing = 8
         layout.itemSize = CGSize(width: ( UIScreen.main.bounds.width - 40 ) / 2, height: 66)
         super.init(frame: .zero, collectionViewLayout: layout)
-        
+
         self.showsHorizontalScrollIndicator = false
         self.backgroundColor = .clear
         

@@ -20,7 +20,7 @@ public class VASService: BaseService, VASServiceProtocol {
         // Configure the provider for both debug and release builds
 #if DEBUG
         let networkLoggerPlugin = NetworkLoggerPlugin(configuration: .init(logOptions: .verbose))
-        self.provider = MoyaProvider<VASAPI>(plugins: [networkLoggerPlugin])
+        self.provider = MoyaProvider<VASAPI>(plugins: [])
 #else
         self.provider = MoyaProvider<VASAPI>()
 #endif

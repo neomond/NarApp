@@ -16,6 +16,7 @@ class ServiceViewCell: UICollectionViewCell {
         let lbl = UILabel()
         lbl.numberOfLines = 0
         lbl.textColor = .black
+        lbl.font = UIFont.systemFont(ofSize: 14)
         return lbl
     }()
     

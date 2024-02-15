@@ -41,6 +41,7 @@ class DashboardWorker: DashboardWorkerLogic {
         service.hub.fetchHub { result in
             switch result {
             case .success(let response):
+                print("FetchHubRespomnse \(response)")
                 completion(response)
             default:
                 print("no data")

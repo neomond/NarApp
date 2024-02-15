@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "05027266-3198-4296-AA66-60BF1793C6A7"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C209F476-D476-4D31-A0E8-17FAF1510B59"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NarHub/NarHub/Scenes/Dashboard/DashboardViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "loadHubServices()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C209F476-D476-4D31-A0E8-17FAF1510B59 - d06ec589bca73cff"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NarHub.DashboardViewController.loadStories() -&gt; ()"
+                  moduleName = "NarHub"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nazrinatayeva/Desktop/Narhub/NarHub/NarHub/Scenes/Dashboard/DashboardViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "69"
+                  endingLineNumber = "69"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  uuid = "C209F476-D476-4D31-A0E8-17FAF1510B59 - c6fea75bf46f153f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NarHub.DashboardViewController.loadHubServices() -&gt; ()"
+                  moduleName = "NarHub"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nazrinatayeva/Desktop/Narhub/NarHub/NarHub/Scenes/Dashboard/DashboardViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E34DCDA2-0F67-4869-A42B-6C3647CF4BB8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NarHub/NarHub/Scenes/Dashboard/DashboardViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E34DCDA2-0F67-4869-A42B-6C3647CF4BB8 - 640a1ba9d9fbe9e5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NarHub.DashboardViewController.collectionView(_: __C.UICollectionView, cellForItemAt: Foundation.IndexPath) -&gt; __C.UICollectionViewCell"
+                  moduleName = "NarHub"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nazrinatayeva/Desktop/Narhub/NarHub/NarHub/Scenes/Dashboard/DashboardViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "123"
+                  endingLineNumber = "123"
+                  offsetFromSymbolStart = "2480">
+               </Location>
+               <Location
+                  uuid = "E34DCDA2-0F67-4869-A42B-6C3647CF4BB8 - 640a1ba9d9fbe98a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NarHub.DashboardViewController.collectionView(_: __C.UICollectionView, cellForItemAt: Foundation.IndexPath) -&gt; __C.UICollectionViewCell"
+                  moduleName = "NarHub"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nazrinatayeva/Desktop/Narhub/NarHub/NarHub/Scenes/Dashboard/DashboardViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "122"
+                  endingLineNumber = "122"
+                  offsetFromSymbolStart = "2412">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

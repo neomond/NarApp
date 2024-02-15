@@ -3,6 +3,7 @@ import UIKit
 
 class DashboardView: UIView {
     // MARK: - Product Card Main View
+    
     private lazy var externalView: UIView = {
         let view = UIView()
         view.backgroundColor = ColorStyle.bgColor.load()
@@ -19,8 +20,8 @@ class DashboardView: UIView {
     }()
     
     // MARK: - Services Grid View
-    lazy var servicesGridView: ServicesGridView = {
-        let view =  ServicesGridView()
+    lazy var servicesView: ServicesView = {
+        let view = ServicesView()
         return view
     }()
     
@@ -28,8 +29,15 @@ class DashboardView: UIView {
     lazy var storiesCollectionView: StoriesCollectionView = {
         let collectionView = StoriesCollectionView()
         collectionView.register(StoryCircleCell.self, forCellWithReuseIdentifier: StoryCircleCell.reuseIdentifier)
+        collectionView.isHidden = true
         return collectionView
     }()
+    
+    private let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+         indicator.hidesWhenStopped = true
+         return indicator
+     }()
     
    private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -52,8 +60,9 @@ class DashboardView: UIView {
     private func setupSubviews() {
         self.containerView.addSubview(stackView)
         self.stackView.addArrangedSubview(storiesCollectionView)
+        self.stackView.addArrangedSubview(activityIndicator)
         self.stackView.addArrangedSubview(productCardContainerView)
-        self.stackView.addArrangedSubview(servicesGridView)
+        self.stackView.addArrangedSubview(servicesView)
 
         self.scrollView.addSubview(containerView)
         self.externalView.addSubview(scrollView)
@@ -85,14 +94,21 @@ class DashboardView: UIView {
             make.width.equalTo(self.scrollView)
         }
         stackView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.equalToSuperview().offset(24)
+            make.leading.trailing.bottom.equalToSuperview()
         }
         storiesCollectionView.snp.makeConstraints { make in
-            make.height.equalTo(120)
+            make.height.equalTo(80)
         }
-        productCardContainerView.snp.makeConstraints { make in
-            make.height.equalTo(100 + 24)
-        }
+    }
+    
+    //MARK: public
+    public func startStoriesLoading() {
+        self.activityIndicator.startAnimating()
+    }
+    public func stopStoriesLoading() {
+        self.activityIndicator.stopAnimating()
+        self.storiesCollectionView.isHidden = false
     }
 }
 

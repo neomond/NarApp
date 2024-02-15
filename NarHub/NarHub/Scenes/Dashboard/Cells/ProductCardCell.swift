@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ProductCardCell: UICollectionViewCell {
+class ProductCardCell: UIView {
     let productType: ProductType
     static let reuseIdentifier = "ProductCardCell"
     
@@ -53,7 +53,7 @@ class ProductCardCell: UICollectionViewCell {
         self.titleLabel.text = productType.getTitle()
         self.imageView.image = productType.getImage()
         
-        contentView.addSubview(containerView)
+        self.addSubview(containerView)
         containerView.addSubview(titleLabel)
         containerView.addSubview(imageView)
     }
@@ -65,15 +65,15 @@ class ProductCardCell: UICollectionViewCell {
         containerView.snp.updateConstraints { make in
             make.edges.equalToSuperview()
         }
+        
         titleLabel.snp.updateConstraints { make in
-            make.top.equalTo(containerView.snp.top).offset(12)
-            make.right.equalTo(imageView.snp.left).offset(-8)
-            make.left.equalTo(containerView.snp.left).offset(12)
+            make.top.left.equalTo(containerView).offset(12)
+
         }
+        
         imageView.snp.updateConstraints { make in
-            make.centerY.equalTo(containerView.snp.centerY)
-            make.right.equalTo(containerView.snp.right).offset(-8)
-            make.height.width.equalTo(80)
+            make.top.trailing.bottom.equalTo(containerView)
+            make.height.equalTo(containerView)
         }
     }
 }

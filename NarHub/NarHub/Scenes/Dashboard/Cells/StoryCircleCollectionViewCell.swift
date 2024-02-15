@@ -27,7 +27,6 @@ class StoryCircleCell: UICollectionViewCell {
         return view
     }()
     
-    
     //MARK: Init
     
     override init(frame: CGRect) {

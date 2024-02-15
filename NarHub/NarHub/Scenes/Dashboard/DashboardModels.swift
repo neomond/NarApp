@@ -32,7 +32,7 @@ enum Dashboard
             let hubs: HubResponse
         }
         
-        struct HubsModel {
+        struct ViewModel {
             let hubs: [HubModel]
         }
     }

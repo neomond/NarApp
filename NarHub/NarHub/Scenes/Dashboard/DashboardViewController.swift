@@ -16,7 +16,7 @@ import SnapKit
 protocol DashboardDisplayLogic: AnyObject {
     func displayStories(viewModel: Dashboard.FetchStories.ViewModel)
     
-    func displayHubs(viewModel: Dashboard.FetchHubs.HubsModel)
+    func displayHubs(viewModel: Dashboard.FetchHubs.ViewModel)
     
     func displayLoad(viewModel: Dashboard.Load.ViewModel)
     
@@ -41,8 +41,9 @@ class DashboardViewController: UIViewController {
         super.viewDidLoad()
         mainView.storiesCollectionView.delegate = self
         mainView.storiesCollectionView.dataSource = self
-        mainView.servicesGridView.delegate = self
-    
+        mainView.servicesView.servicesCollectionView.dataSource = self
+        mainView.servicesView.servicesCollectionView.delegate = self
+        
         self.load()
     }
     
@@ -62,42 +63,42 @@ class DashboardViewController: UIViewController {
     }
     
     func loadHubServices() {
-       let request = Dashboard.FetchHubs.Request()
-       interactor?.fetchHubs(request: request)
-   }
+        self.mainView.servicesView.startLoading()
+        let request = Dashboard.FetchHubs.Request()
+        interactor?.fetchHubs(request: request)
+    }
     
     func loadStories() {
+        self.mainView.startStoriesLoading()
         let request = Dashboard.FetchStories.Request()
         interactor?.fetchStories(request: request)
     }
-  
+    
 }
 
 
 extension DashboardViewController: DashboardDisplayLogic {
     
     func displayLoad(viewModel: Dashboard.Load.ViewModel) {
+        self.loadStories()
         
-           self.loadStories()
-        
-//           self.loadHubServices()
+        self.loadHubServices()
     }
     
     
     func displayStories(viewModel: Dashboard.FetchStories.ViewModel) {
         
         self.stories = viewModel.stories
-        print(stories.count)
         self.mainView.storiesCollectionView.reloadData()
-//      self.mainView.stopStoriesLoading()
+        self.mainView.stopStoriesLoading()
     }
     
-    func displayHubs(viewModel: Dashboard.FetchHubs.HubsModel) {
+    func displayHubs(viewModel: Dashboard.FetchHubs.ViewModel) {
         self.hubs = viewModel.hubs
-//      self.mainView.servicesGridView.setupGridItems(with: self.hubs)
-    
+        self.mainView.servicesView.servicesCollectionView.reloadData()
+        self.mainView.servicesView.stopLoading()
     }
-
+    
     func displayError(errorMessage: String) { }
 }
 
@@ -107,29 +108,31 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoryCircleCell.reuseIdentifier, for: indexPath) as? StoryCircleCell else {
                 return UICollectionViewCell()
             }
-            print(stories.count)
             cell.configure(storyModel: stories[indexPath.row])
             return cell
-            
+
+        }
+        
+        else if collectionView == self.mainView.servicesView.servicesCollectionView {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ServiceViewCell.reuseIdentifier, for: indexPath) as? ServiceViewCell else {
+                return UICollectionViewCell()
+            }
+            cell.configure(with: self.hubs[indexPath.row])
+            return cell
         }
         else {
-            //        else if collectionView == self.mainView.servicesGridView {
-            ////            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ServicesViewCell.reuseIdentifier, for: IndexPath) as? ServicesGridView else {
-            ////                return UICollectionViewCell()
-            ////            }
-            ////            cell.configure(with: self.hubs[indexPath.row])
-            //        }
             
             return  UICollectionViewCell()
-        }}
+        }
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.mainView.storiesCollectionView {
             return self.stories.count
         }
-        //        else if collectionView == self.mainView.servicesGridView {
-        //            return self.hubs.count
-        //        }
+        else if collectionView == self.mainView.servicesView.servicesCollectionView {
+            return self.hubs.count
+        }
         else {
             return 0
         }
@@ -152,35 +155,23 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
                 currentWindow.addSubview(storyView)
             }
         }
-    }
-}
-//            func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//                guard collectionView == mainView.storiesCollectionView,
-//                      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoryCircleCell.reuseIdentifier, for: indexPath) as? StoryCircleCell else {
-//                    return UICollectionViewCell()
-//                }
-//    
-//                let story =  stories[indexPath.row]
-//                cell.imageView.image = story.url
-//                cell.setWatched(story.isSeen)
-//                return cell
-//            }
-        
-
-
-    extension DashboardViewController: ServicesGridViewDelegate {
-        func didSelectService(_ service: ServiceType) {
-            switch service {
-            case .freeSMS:
+        else if collectionView == mainView.servicesView.servicesCollectionView {
+            let hubModel = self.hubs[indexPath.row]
+            
+            switch hubModel.id {
+            case 1:
                 router?.routeToFreeSMS()
-            case .balanceTransfer:
+            case 2:
                 router?.routeToBalanceTransfer()
-            case .servicesAbroad:
+            case 3:
                 router?.routeToVAS()
             default:
                 break
             }
         }
     }
-    
+}
+
+
+
 

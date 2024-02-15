@@ -18,12 +18,12 @@ public class HubService: BaseService, HubServiceProtocol {
     public override init() {
         super.init()
         // Configure the provider for both debug and release builds
-#if DEBUG
+    #if DEBUG
         let networkLoggerPlugin = NetworkLoggerPlugin(configuration: .init(logOptions: .verbose))
-        self.provider = MoyaProvider<HubAPI>(plugins: [networkLoggerPlugin])
-#else
+        self.provider = MoyaProvider<HubAPI>(plugins: [])
+    #else
         self.provider = MoyaProvider<HubAPI>()
-#endif
+    #endif
     }
     
     public func fetchHub(completion: @escaping (Result<HubResponse, WrongResponse>) -> ()) {

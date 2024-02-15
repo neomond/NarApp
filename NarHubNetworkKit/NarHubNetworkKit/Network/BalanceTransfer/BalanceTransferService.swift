@@ -23,7 +23,7 @@ public class BalanceTransferService:BaseService, BalanceTransferServiceProtocol 
 //         for both debug and release builds
 #if DEBUG
         let networkLoggerPlugin = NetworkLoggerPlugin(configuration: NetworkLoggerPlugin.Configuration(logOptions: .verbose))
-        self.provider = MoyaProvider<BalanceTransferAPI>(plugins: [networkLoggerPlugin])
+        self.provider = MoyaProvider<BalanceTransferAPI>(plugins: [])
 #else
         self.provider = MoyaProvider<BalanceTransferAPI>()
 #endif
